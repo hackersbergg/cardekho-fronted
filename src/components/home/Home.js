@@ -1,28 +1,68 @@
 import React, { Component } from "react";
-import Header from '../common/Header';
-import Footer from '../common/Footer';
+import {Link} from 'react-router-dom';
+import Header from "../common/Header.js"
+import Footer from "../common/Footer.js"
 
 export default class Home extends Component{
+
+  constructor(props) {
+    super(props);
+
+
+    this.state = {
+      response: "",
+    };
+
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+
+  fetchData = async () => {
+
+    try {
+      const response = await fetch(
+        `http://3.128.190.113/api-2/`
+      );
+      const JsonResponse = await response.json();
+      this.setState({ response: JsonResponse });
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+
   render(){
+
+    const {response} = this.state;
+
+    if (!response) {
+      return "Loading...";
+    }
+
+
     return(
 
       <div>
 
-      <Header></Header>
+       {response.home_bannerData.map((response) =>(
 
 
-        <section class="hero spad set-bg" data-setbg="img/hero-bg.jpg">
+        <section class="hero spad set-bg" data-setbg="assets/img/hero-bg.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="hero__text">
                             <div class="hero__text__title">
                                 <span>FIND YOUR DREAM CAR</span>
-                                <h2>Porsche Cayenne S</h2>
+                                <h2>{response.banner_title}</h2>
                             </div>
                             <div class="hero__text__price">
                                 <div class="car-model">Model 2019</div>
-                                <h2>$399<span>/Month</span></h2>
+                                <h2>${response.discount_price}<span>/Month</span></h2>
                             </div>
                             <a href="#" class="primary-btn"><img src="img/wheel.png" alt=""/> Test Drive</a>
                             <a href="#" class="primary-btn more-btn">Learn More</a>
@@ -172,6 +212,10 @@ export default class Home extends Component{
             </div>
         </section>
 
+        ))}
+
+
+
         <section class="services spad">
             <div class="container">
                 <div class="row">
@@ -223,6 +267,9 @@ export default class Home extends Component{
                 </div>
             </div>
         </section>
+
+
+        {response.homefeature_productData.map((response) =>(
   
         <section class="feature spad">
             <div class="container">
@@ -231,11 +278,10 @@ export default class Home extends Component{
                         <div class="feature__text">
                             <div class="section-title">
                                 <span>Our Feature</span>
-                                <h2>We Are a Trusted Name In Auto</h2>
+                                <h2>{response.title}</h2>
                             </div>
                             <div class="feature__text__desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                    ut labore et</p>
+                                <p>{response.description}</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
                                     viverra maecenas accumsan lacus vel facilisis.</p>
@@ -251,7 +297,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-1.png" alt=""/>
+                                        <img src="assets/img/feature/feature-1.png" alt=""/>
                                     </div>
                                     <h6>Engine</h6>
                                 </div>
@@ -259,7 +305,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-2.png" alt=""/>
+                                        <img src="assets/img/feature/feature-2.png" alt=""/>
                                     </div>
                                     <h6>Turbo</h6>
                                 </div>
@@ -267,7 +313,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-3.png" alt=""/>
+                                        <img src="assets/img/feature/feature-3.png" alt=""/>
                                     </div>
                                     <h6>Colling</h6>
                                 </div>
@@ -275,7 +321,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-4.png" alt=""/>
+                                        <img src="assets/img/feature/feature-4.png" alt=""/>
                                     </div>
                                     <h6>Suspension</h6>
                                 </div>
@@ -283,7 +329,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-5.png" alt=""/>
+                                        <img src="assets/img/feature/feature-5.png" alt=""/>
                                     </div>
                                     <h6>Electrical</h6>
                                 </div>
@@ -291,7 +337,7 @@ export default class Home extends Component{
                             <div class="col-lg-6 col-md-4 col-6">
                                 <div class="feature__item">
                                     <div class="feature__item__icon">
-                                        <img src="img/feature/feature-6.png" alt=""/>
+                                        <img src="assets/img/feature/feature-6.png" alt=""/>
                                     </div>
                                     <h6>Brakes</h6>
                                 </div>
@@ -302,7 +348,10 @@ export default class Home extends Component{
             </div>
         </section>
 
+        ))}
 
+
+        
 
         <section class="car spad">
             <div class="container">
@@ -320,16 +369,28 @@ export default class Home extends Component{
                 </div>
                 <div class="row car-filter">
 
+                {response.home_productData.map((response) =>(
 
                     <div class="col-lg-3 col-md-4 col-sm-6 mix">
                         <div class="car__item">
                             <div class="car__item__pic__slider">
-                                <img src="assets/img/cars/car-1.jpg" alt="car"/>
+                                  <Link to={{
+                                          pathname: `/detail/${response.product_slug}`,
+                                          response:response
+                                        }}>
+                                  <img src="assets/img/cars/car-1.jpg" alt="car"/>
+                                 </Link>
                             </div>
                             <div class="car__item__text">
                                 <div class="car__item__text__inner">
                                     <div class="label-date">2016</div>
-                                    <h5><a href="#">Porsche cayenne turbo s</a></h5>
+                                    
+                                    <Link to={{
+                                          pathname: `/detail/${response.product_slug}`,
+                                          response:response
+                                        }}>
+                                            <h5>{response.title}</h5>
+                                    </Link>
                                     <ul>
                                         <li><span>35,000</span> mi</li>
                                         <li>Auto</li>
@@ -338,19 +399,23 @@ export default class Home extends Component{
                                 </div>
                                 <div class="car__item__price">
                                     <span class="car-option">For Rent</span>
-                                    <h6>$218<span>/Month</span></h6>
+                                    <h6>${response.product_price}<span>/Month</span></h6>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                ))}
   
                 </div>
             </div>
         </section>
 
+      
 
 
+
+        {response.home_peoplechooseData.map((response) =>(
 
         <section class="chooseus spad">
             <div class="container">
@@ -382,6 +447,8 @@ export default class Home extends Component{
                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
             </div>
         </section>
+
+        ))}
 
 
 
@@ -422,9 +489,6 @@ export default class Home extends Component{
                 </div>
             </div>
         </section>
-
-
-        <Footer></Footer>
 
       </div>
 

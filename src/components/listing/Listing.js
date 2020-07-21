@@ -1,31 +1,54 @@
 import React, {Component} from "react";
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-
+import {Link} from "react-router-dom";
 
 export default class Listing extends Component{
+
+	constructor(props) {
+    super(props);
+
+
+    this.state = {
+      value: "1",
+      response: "",
+    };
+
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  pageClick = (page) => {
+    this.setState({value: page}, this.fetchData);
+  };
+
+
+  fetchData = async () => {
+
+    try {
+      const response = await fetch(
+        `http://3.128.190.113/api/car/p_list?page=${this.state.value}`
+      );
+      const JsonResponse = await response.json();
+      this.setState({ response: JsonResponse });
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+
 	render(){
+
+		const { response } = this.state;
+
+	     if (!response) {
+	      return "Loading...";
+	    }
+
 		return(
 
 		<div>
-
-		<Header></Header>
-
-		    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-lg-12 text-center">
-		                    <div class="breadcrumb__text">
-		                        <h2>Car Listing</h2>
-		                        <div class="breadcrumb__links">
-		                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-		                            <span>About</span>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
 
 		    <section class="car spad">
 		        <div class="container">
@@ -135,16 +158,31 @@ export default class Listing extends Component{
 		                        </div>
 		                    </div>
 		                    <div class="row">
+
+		                    {response.results.map((response) =>(
+
 		                        <div class="col-lg-4 col-md-4">
 		                            <div class="car__item">
-		                                <div class="car__item__pic__slider owl-carousel">
-		                                    <img src="assets/img/cars/car-1.jpg" alt=""/>
-		                                    <img src="assets/img/cars/car-8.jpg" alt=""/>
+		                                <div class="car__item__pic__slider">
+		                                <Link to={{
+                                          pathname: `/detail/${response.slug}`,
+                                          response:response
+                                        	}}>
+		                                  <img src={response.product_image} alt="car"/>
+		                                </Link>
+		                                
 		                                </div>
 		                                <div class="car__item__text">
 		                                    <div class="car__item__text__inner">
 		                                        <div class="label-date">2016</div>
-		                                        <h5><a href="#">Porsche cayenne turbo s</a></h5>
+
+		                                        <Link to={{
+				                                  pathname: `/detail/${response.slug}`,
+				                                  response:response
+				                                }}>
+				                                    <h5>{response.title}</h5>
+				                                </Link>
+
 		                                        <ul>
 		                                            <li><span>35,000</span> mi</li>
 		                                            <li>Auto</li>
@@ -153,17 +191,19 @@ export default class Listing extends Component{
 		                                    </div>
 		                                    <div class="car__item__price">
 		                                        <span class="car-option">For Rent</span>
-		                                        <h6>$218<span>/Month</span></h6>
+		                                        <h6>${response.price}<span>/Month</span></h6>
 		                                    </div>
 		                                </div>
 		                            </div>
 		                        </div>
+
+		                        ))}
 		                        
 		                    </div>
 		                    <div class="pagination__option">
-		                        <a href="#" class="active">1</a>
-		                        <a href="#">2</a>
-		                        <a href="#">3</a>
+		                        <a href="#" class="active" onClick={() => this.pageClick(1)}>1</a>
+		                        <a href="#" class="active" onClick={() => this.pageClick(2)}>2</a>
+		                        <a href="#" class="active" onClick={() => this.pageClick(3)}>3</a>
 		                        <a href="#"><span class="arrow_carrot-2right"></span></a>
 		                    </div>
 		                </div>

@@ -1,15 +1,46 @@
 import React, {Component} from "react";
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-
 
 export default class Detail extends Component{
+
+	constructor(props) {
+    super(props);
+
+    this.state = {
+      path: "",
+      response: "",
+    };
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    const path = this.props.match.params.slug;
+    try {
+      const response = await fetch(
+        `http://3.128.190.113/api/car/p_detail/${path}`
+      );
+      const JsonResponse = await response.json();
+      this.setState({ response: JsonResponse });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
 	render(){
+
+		const { response } = this.state;
+
+	    if (!response) {
+	      return "Loading...";
+	    }
+
 		return(
 
 		<div>
 
-		<Header></Header>
 
 		    <section class="car-details spad">
 		        <div class="container">
@@ -17,7 +48,7 @@ export default class Detail extends Component{
 		                <div class="col-lg-9">
 		                    <div class="car__details__pic">
 		                        <div class="car__details__pic__large">
-		                            <img class="car-big-img" src="assets/img/cars/details/cd-1.jpg" alt=""/>
+		                            <img class="car-big-img" src={response.product_image} alt=""/>
 		                        </div>
 		                        <div class="car-thumbs">
 		                            <div class="car-thumbs-track car__thumb__slider owl">
@@ -407,8 +438,9 @@ export default class Detail extends Component{
 		                    <div class="car__details__sidebar">
 		                        <div class="car__details__sidebar__model">
 		                            <ul>
-		                                <li>Stock <span>K99D10459934</span></li>
-		                                <li>Vin <span>3VWKM245686</span></li>
+		                            	<li>Title <span>{response.title}</span></li>
+		                                <li>Stock <span>{response.sku}</span></li>
+		                                <li>Vin <span>{response.vin}</span></li>
 		                            </ul>
 		                            <a href="#" class="primary-btn">Get Today Is Price</a>
 		                            <p>Pricing in 11/26/2019</p>
@@ -417,7 +449,7 @@ export default class Detail extends Component{
 		                            <ul>
 		                                <li>MSRP <span>$120,000</span></li>
 		                                <li>Dealer Discounts <span>$3,000</span></li>
-		                                <li>Price <span>$117,000</span></li>
+		                                <li>Price <span>${response.price}</span></li>
 		                            </ul>
 		                            <a href="#" class="primary-btn"><i class="fa fa-credit-card"></i> Express Purchase</a>
 		                            <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> Build Payment</a>

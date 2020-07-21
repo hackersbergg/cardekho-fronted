@@ -7,10 +7,6 @@ export default class Header extends Component{
 
       <div>
 
-		    <div id="preloder">
-		        <div class="loader"></div>
-		    </div>
-
 		  
 		    <div class="offcanvas-menu-overlay"></div>
 		    <div class="offcanvas-menu-wrapper">
@@ -20,7 +16,7 @@ export default class Header extends Component{
 		            <a href="#" class="primary-btn">Add Car</a>
 		        </div>
 		        <div class="offcanvas__logo">
-		            <a href="./index.html"><img src="assets/img/logo.png" alt=""/></a>
+		            <a href="/"><img src="assets/img/logo.png" alt=""/></a>
 		        </div>
 		        <div id="mobile-menu-wrap"></div>
 		        <ul class="offcanvas__widget__add">
@@ -70,15 +66,15 @@ export default class Header extends Component{
 		            <div class="row">
 		                <div class="col-lg-2">
 		                    <div class="header__logo">
-		                        <a href="./index.html"><img src="assets/img/logo.png" alt=""/></a>
+		                        <a href="/"><img src="assets/img/logo.png" alt=""/></a>
 		                    </div>
 		                </div>
 		                <div class="col-lg-10">
 		                    <div class="header__nav">
 		                        <nav class="header__menu">
 		                            <ul>
-		                                <li class="active"><a href="./index.html">Home</a></li>
-		                                <li><a href="./car.html">Cars</a></li>
+		                                <li class="active"><a href="/">Home</a></li>
+		                                <li><a href="/list">Cars</a></li>
 		                                <li><a href="./blog.html">Blog</a></li>
 		                                <li><a href="#">Pages</a>
 		                                    <ul class="dropdown">
