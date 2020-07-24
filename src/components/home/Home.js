@@ -225,7 +225,7 @@ export default class Home extends Component{
                                           pathname: `/detail/${response.product_slug}`,
                                           response:response
                                         }}>
-                                            <h5>{response.title}</h5>
+                                            <h5>{response.product_title}</h5>
                                     </Link>
                                     <ul>
                                         <li><span>35,000</span> mi</li>
