@@ -75,7 +75,7 @@ export default class Header extends Component{
 		                            <ul>
 		                                <li class="active"><a href="/">Home</a></li>
 		                                <li><a href="/list">Cars</a></li>
-		                                <li><a href="./blog.html">Blog</a></li>
+		                                <li><a href="/blog">Blog</a></li>
 		                                <li><a href="#">Pages</a>
 		                                    <ul class="dropdown">
 		                                        <li><a href="./about.html">About Us</a></li>

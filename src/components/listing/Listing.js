@@ -9,7 +9,9 @@ export default class Listing extends Component{
 
     this.state = {
       value: "1",
+      filterValue : "",
       response: "",
+      filterResponse: "",
     };
 
   }
@@ -22,15 +24,24 @@ export default class Listing extends Component{
     this.setState({value: page}, this.fetchData);
   };
 
+  filterClick = (filter) => {
+    this.setState({filterValue: filter}, this.fetchData);
+  };
+
 
   fetchData = async () => {
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api/car/p_list?page=${this.state.value}`
+        `http://3.128.190.113/api/car/p_list?page=${this.state.value}&min_price=${this.state.filterValue}&max_price=${this.state.filterValue}&color=${this.state.filterValue}&brand=${this.state.filterValue}&model=${this.state.filterValue}&condition=${this.state.filterValue}&mileage=${this.state.filterValue}&engine=${this.state.filterValue}`
+      );
+      const filterResponse = await fetch(
+        `http://3.128.190.113/api/carlist/filter`
       );
       const JsonResponse = await response.json();
+      const JsonFilterResponse = await filterResponse.json();
       this.setState({ response: JsonResponse });
+      this.setState({ filterResponse: JsonFilterResponse });
     } 
     catch (error) {
       console.log(error);
@@ -41,9 +52,13 @@ export default class Listing extends Component{
 	render(){
 
 		const { response } = this.state;
+		const { filterResponse } = this.state;
 
-	     if (!response) {
-	      return "Loading...";
+	    if (!response ) {
+	      return "Loading response...";
+	    }
+	    if (!filterResponse ) {
+	      return "Loading filterResponse...";
 	    }
 
 		return(
@@ -62,58 +77,53 @@ export default class Listing extends Component{
 		                                <button type="submit"><i class="fa fa-search"></i></button>
 		                            </form>
 		                        </div>
+
+		                        
+
 		                        <div class="car__filter">
 		                            <h5>Car Filter</h5>
 		                            <form action="#">
+		                            
+
 		                                <select>
 		                                    <option data-display="Brand">Select Brand</option>
-		                                    <option value="">Acura</option>
-		                                    <option value="">Audi</option>
-		                                    <option value="">Bentley</option>
-		                                    <option value="">BMW</option>
-		                                    <option value="">Bugatti</option>
+		                                    {filterResponse.filter_BrandData.map((filterResponse) =>(
+		                                    <option value="" onClick={() => this.filterClick(1)}>{filterResponse.brand}</option>
+		                                    
+		                                    ))}
 		                                </select>
+		                           
+
 		                                <select>
 		                                    <option data-display="Model">Select Model</option>
-		                                    <option value="">Q3</option>
-		                                    <option value="">A4 </option>
-		                                    <option value="">AVENTADOR</option>
+		                                    {filterResponse.filter_ModelData.map((filterResponse) =>(
+		                                    <option value="">{filterResponse.model}</option>
+		                                     ))}
 		                                </select>
-		                                <select>
-		                                    <option value="">Body Style</option>
-		                                    <option value="">Option 1</option>
-		                                    <option value="">Option 2</option>
-		                                </select>
+		
 		                                <select>
 		                                    <option value="">Condition</option>
-		                                    <option value="">First Hand</option>
-		                                    <option value="">Second Hand</option>
-		                                </select>
-		                                <select>
-		                                    <option value="">Transmisson</option>
-		                                    <option value="">Bluetooth</option>
-		                                    <option value="">WiFi</option>
-		                                </select>
+		                                    {filterResponse.filter_ConditionData.map((filterResponse) =>(
+		                                    <option value="">{filterResponse.condition}</option>
+		                                    ))}
+		                                </select><br/>
 		                                <select>
 		                                    <option value="">Mileage</option>
-		                                    <option value="">27</option>
-		                                    <option value="">20</option>
-		                                    <option value="">15</option>
-		                                    <option value="">10</option>
-		                                </select>
+		                                    {filterResponse.filter_MileageData.map((filterResponse) =>(
+		                                    <option value="">{filterResponse.mileage}</option>
+		                                    ))}
+		                                </select><br/>
 		                                <select>
 		                                    <option value="">Engine</option>
-		                                    <option value="">BS3</option>
-		                                    <option value="">BS4</option>
-		                                    <option value="">BS5</option>
-		                                    <option value="">BS6</option>
-		                                </select>
+		                                    {filterResponse.filter_EngineData.map((filterResponse) =>(
+		                                    <option value="">{filterResponse.engine}</option>
+		                                    ))}
+		                                </select><br/>
 		                                <select>
 		                                    <option value="">Colors</option>
-		                                    <option value="">Red</option>
-		                                    <option value="">Blue</option>
-		                                    <option value="">Black</option>
-		                                    <option value="">Yellow</option>
+		                                    {filterResponse.filter_ColorData.map((filterResponse) =>(
+		                                    <option value="">{filterResponse.color}</option>
+		                                    ))}
 		                                </select>
 		                                <div class="filter-price">
 		                                    <p>Price:</p>
@@ -131,6 +141,9 @@ export default class Listing extends Component{
 		                                </div>
 		                            </form>
 		                        </div>
+
+		                        
+
 		                    </div>
 		                </div>
 		                <div class="col-lg-9">

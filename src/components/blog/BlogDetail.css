@@ -1,0 +1,31 @@
+.img-hundo{width:100%}
+.img-hundo{height:100%}
+.carousel-caption {
+bottom: 50%;
+padding-bottom:0px;
+}
+
+
+p {
+  font-family: Palatino, Georgia, serif;
+
+}
+
+
+
+.carousel-caption h1 {
+  color: white;
+  font-family: "europa", sans-serif;
+  font-style: normal;
+  text-transform: uppercase;
+  padding-top: 16%;
+  padding-left: 10px;
+  padding-right:50px;
+}
+
+
+
+
+
+
+
