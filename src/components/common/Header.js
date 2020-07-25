@@ -25,7 +25,7 @@ export default class Header extends Component{
 		        </ul>
 		        <div class="offcanvas__phone__num">
 		            <i class="fa fa-phone"></i>
-		            <span>(+12) 345 678 910</span>
+		            <span>(+91) 9675331149</span>
 		        </div>
 		        <div class="offcanvas__social">
 		            <a href="#"><i class="fa fa-facebook"></i></a>
@@ -42,20 +42,19 @@ export default class Header extends Component{
 		                    <div class="col-lg-7">
 		                        <ul class="header__top__widget">
 		                            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-		                            <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
+		                            <li><i class="fa fa-envelope-o"></i> jaymataditourtravels@gmail.com</li>
 		                        </ul>
 		                    </div>
 		                    <div class="col-lg-5">
 		                        <div class="header__top__right">
 		                            <div class="header__top__phone">
 		                                <i class="fa fa-phone"></i>
-		                                <span>(+12) 345 678 910</span>
+		                                <span>(+91) 9675331149</span>
 		                            </div>
 		                            <div class="header__top__social">
-		                                <a href="#"><i class="fa fa-facebook"></i></a>
-		                                <a href="#"><i class="fa fa-twitter"></i></a>
-		                                <a href="#"><i class="fa fa-google"></i></a>
-		                                <a href="#"><i class="fa fa-instagram"></i></a>
+		                                <a href="https://www.facebook.com/Jaymataditourtravel-115583619879060/"><i class="fa fa-facebook"></i></a>
+		                                <a href="https://wa.me/8144258413?text=I%27m%20interested%20in%20your%20car%20for%20rent"><i class="fa fa-whatsapp"></i></a>
+		                                <a href="https://www.instagram.com/jaymataditourtravel/"><i class="fa fa-instagram"></i></a>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -66,7 +65,7 @@ export default class Header extends Component{
 		            <div class="row">
 		                <div class="col-lg-2">
 		                    <div class="header__logo">
-		                        <a href="/"><img src="assets/img/logo.png" alt=""/></a>
+		                        <a href="/"><img src="assets/img/main-logo.png" alt=""/></a>
 		                    </div>
 		                </div>
 		                <div class="col-lg-10">
@@ -76,24 +75,11 @@ export default class Header extends Component{
 		                                <li class="active"><a href="/">Home</a></li>
 		                                <li><a href="/list">Cars</a></li>
 		                                <li><a href="/blog">Blog</a></li>
-		                                <li><a href="#">Pages</a>
-		                                    <ul class="dropdown">
-		                                        <li><a href="./about.html">About Us</a></li>
-		                                        <li><a href="./car-details.html">Car Details</a></li>
-		                                        <li><a href="./blog-details.html">Blog Details</a></li>
-		                                    </ul>
-		                                </li>
-		                                <li><a href="./about.html">About</a></li>
-		                                <li><a href="./contact.html">Contact</a></li>
+		                                <li><a href="/service">Services</a></li>
+		                                <li><a href="/about">About</a></li>
+		                                <li><a href="/contact">Contact</a></li>
 		                            </ul>
 		                        </nav>
-		                        <div class="header__nav__widget">
-		                            <div class="header__nav__widget__btn">
-		                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-		                                <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-		                            </div>
-		                            <a href="#" class="primary-btn">Add Car</a>
-		                        </div>
 		                    </div>
 		                </div>
 		            </div>

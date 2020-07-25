@@ -13,15 +13,15 @@ export default class Footer extends Component{
 	                <div class="col-lg-4 col-md-4">
 	                    <div class="footer__about">
 	                        <div class="footer__logo">
-	                            <a href="#"><img src="assets/img/footer-logo.png" alt=""/></a>
+	                            <a href="#"><img src="assets/img/main-logo.png" alt=""/></a>
 	                        </div>
-	                        <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us
-	                            on (+1) 96 123 8888</p>
+	                        <p>Any questions? Let us know in store at Bahrkheda, kalan, Pilibhit, UP, India or call us
+	                            on (+91) 9675331149</p>
 	                        <div class="footer__social">
-	                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-	                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-	                            <a href="#" class="google"><i class="fa fa-google"></i></a>
-	                            <a href="#" class="skype"><i class="fa fa-skype"></i></a>
+	                            <a href="https://www.facebook.com/Jaymataditourtravel-115583619879060/" class="facebook"><i class="fa fa-facebook"></i></a>
+	                            <a href="https://wa.me/8144258413?text=I%27m%20interested%20in%20your%20car%20for%20rent" class="twitter"><i class="fa fa-whatsapp"></i></a>
+	                            <a href="https://www.instagram.com/jaymataditourtravel/" class="google"><i class="fa fa-instagram"></i></a>
+
 	                        </div>
 	                    </div>
 	                </div>
@@ -51,23 +51,23 @@ export default class Footer extends Component{
 	                    <div class="footer__brand">
 	                        <h5>Top Brand</h5>
 	                        <ul>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Abarth</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Acura</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Alfa Romeo</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Audi</a></li>
+	                            <li><a href="#"><i class="fa fa-angle-right"></i> Features</a></li>
+	                            <li><a href="#"><i class="fa fa-angle-right"></i> Maintenance</a></li>
+	                            <li><a href="#"><i class="fa fa-angle-right"></i> Rental</a></li>
+	                            <li><a href="#"><i class="fa fa-angle-right"></i> Support</a></li>
 	                        </ul>
 	                        <ul>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> BMW</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Chevrolet</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Ferrari</a></li>
-	                            <li><a href="#"><i class="fa fa-angle-right"></i> Honda</a></li>
+	                            <li><a href="/blog"><i class="fa fa-angle-right"></i> Blog</a></li>
+	                            <li><a href="/service"><i class="fa fa-angle-right"></i> Services</a></li>
+	                            <li><a href="/about"><i class="fa fa-angle-right"></i> About</a></li>
+	                            <li><a href="/contact"><i class="fa fa-angle-right"></i> Contact</a></li>
 	                        </ul>
 	                    </div>
 	                </div>
 	            </div>
 
 	            <div class="footer__copyright__text">
-	                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+	                <p>Copyright &copy; 2020 All rights reserved </p>
 	            </div>
 	            
 	        </div>

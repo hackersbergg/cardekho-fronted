@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Preload from "../common/PreLoad.js";
 
 export default class Detail extends Component{
 
@@ -34,7 +35,9 @@ export default class Detail extends Component{
 		const { response } = this.state;
 
 	    if (!response) {
-	      return "Loading...";
+	      return (
+	      		<Preload></Preload>
+	      	);
 	    }
 
 		return(

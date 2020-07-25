@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import "./Listing.css";
+import Preload from "../common/PreLoad.js";
 
 export default class Listing extends Component{
 
@@ -11,6 +12,7 @@ export default class Listing extends Component{
     this.state = {
    	  response: "",
       filterResponse: "",
+      searchValue: "",
       pageValue: "1",
       filterBrandValue : "",
       filterModelValue : "",
@@ -18,7 +20,7 @@ export default class Listing extends Component{
       filterConditionValue : "",
       filterMileageValue : "",
       filterEngineValue : "",
-      filterOrderValue : "-price",
+      filterOrderValue : "",
       
     };
 
@@ -27,6 +29,10 @@ export default class Listing extends Component{
   componentDidMount() {
     this.fetchData();
   }
+
+  searchClick = (search) => {
+    this.setState({searchValue: search}, this.fetchData);
+  };
 
   pageClick = (page) => {
     this.setState({pageValue: page}, this.fetchData);
@@ -64,7 +70,7 @@ export default class Listing extends Component{
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api/car/p_list?page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
+        `http://3.128.190.113/api/car/p_list?search=${this.state.searchValue}&page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
       );
       const filterResponse = await fetch(
         `http://3.128.190.113/api/carlist/filter`
@@ -79,6 +85,7 @@ export default class Listing extends Component{
     }
   };
 
+ 
 
 	render(){
 
@@ -86,7 +93,9 @@ export default class Listing extends Component{
 		const { filterResponse } = this.state;
 
 	    if (!response ) {
-	      return "Loading response...";
+	      return (
+	      		<Preload></Preload>
+	      	);
 	    }
 	    if (!filterResponse ) {
 	      return "Loading filterResponse...";
@@ -103,9 +112,9 @@ export default class Listing extends Component{
 		                    <div class="car__sidebar">
 		                        <div class="car__search">
 		                            <h5>Car Search</h5>
-		                            <form action="#">
+		                            <form>
 		                                <input type="text" placeholder="Search..." />
-		                                <button type="submit"><i class="fa fa-search"></i></button>
+		                                <button type="submit"><i class="fa fa-search" onClick={() => this.searchClick('01')}></i></button>
 		                            </form>
 		                        </div>
 
@@ -185,25 +194,28 @@ export default class Listing extends Component{
 
 				            <div class="car__filter__option">
 		                        <div class="row">
-		                            <div class="col-lg-6 col-md-6">
-		                                <div class="car__filter__option__item">
-		                                    <h6>Show On Page</h6>
-		                                    <select>
-		                                        <option value="">9 Car</option>
-		                                        <option value="">15 Car</option>
-		                                        <option value="">20 Car</option>
-		                                    </select>
-		                                </div>
-		                            </div>
-		                            <div class="col-lg-6 col-md-6">
+		                           
+		                            <div class="col-lg-12 col-md-6">
 		                                <div class="car__filter__option__item car__filter__option__item--right">
-		                                    <h6>Sort By</h6>
-		                                    <select>
-		                                        <option value="">Price: Highest Fist</option>
-		                                        <option value="">Price: Lowest Fist</option>
-		                                    </select>
+		                               
+		                                    <div class="dropdown show">
+											  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    Sort By
+											  </a>
+
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('-price')}>Highest Price</a>
+											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('price')}>Lowest Price</a>
+											
+											  </div>
+											</div>
 		                                </div>
 		                            </div>
+
+
+
+		                             
+
 		                        </div>
 		                    </div>
 
@@ -256,7 +268,6 @@ export default class Listing extends Component{
 		                        <a href="#" class="active" onClick={() => this.pageClick(3)}>3</a>
 		                        <a href="#"><span class="arrow_carrot-2right"></span></a>
 		                    </div>
-
 		                </div>
 		            </div>
 		        </div>

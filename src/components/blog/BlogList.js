@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom';
 import Header from "../common/Header.js"
 import Footer from "../common/Footer.js"
+import Preload from "../common/PreLoad.js";
 
 
 export default class BlogList extends Component{
@@ -47,7 +48,9 @@ export default class BlogList extends Component{
 		const { response } = this.state;
 
 	     if (!response) {
-	      return "Loading...";
+	      return (
+	      		<Preload></Preload>
+	      	);
 	    }
 
 		return(

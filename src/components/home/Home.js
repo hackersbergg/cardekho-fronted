@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom';
 import './Home.css';
+import Preload from "../common/PreLoad.js";
 
 
 export default class Home extends Component{
@@ -40,7 +41,9 @@ export default class Home extends Component{
     const {response} = this.state;
 
     if (!response) {
-      return "Loading...";
+      return (
+        <Preload></Preload>
+        );
     }
 
 
@@ -63,7 +66,7 @@ export default class Home extends Component{
                             </div>
                             <div class="hero__text__price">
                                 <div class="car-model">Model 2019</div>
-                                <h2>${response.discount_price}<span>/Month</span></h2>
+                                
                             </div>
                        
                         </div>
@@ -129,17 +132,6 @@ export default class Home extends Component{
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="car-price">
-                                                <p>Price Range:</p>
-                                                <div class="price-range-wrap">
-                                                    <div class="price-range"></div>
-                                                    <div class="range-slider">
-                                                        <div class="price-input">
-                                                            <input type="text" id="amount"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <button type="submit" class="site-btn">Searching</button>
                                         </form>
                                     </div>
@@ -173,7 +165,7 @@ export default class Home extends Component{
                             <h5>Rental A Cars</h5>
                             <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                                 viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <a href="/contact"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -182,7 +174,7 @@ export default class Home extends Component{
                             <h5>Buying A Cars</h5>
                             <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                                 viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <a href="/contact"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -191,7 +183,7 @@ export default class Home extends Component{
                             <h5>Car Maintenance</h5>
                             <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                                 viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <a href="/service"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -200,7 +192,7 @@ export default class Home extends Component{
                             <h5>Support 24/7</h5>
                             <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                                 viverra maecenas.</p>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <a href="/contact"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -226,8 +218,8 @@ export default class Home extends Component{
                                     viverra maecenas accumsan lacus vel facilisis.</p>
                             </div>
                             <div class="feature__text__btn">
-                                <a href="#" class="primary-btn">About Us</a>
-                                <a href="#" class="primary-btn partner-btn">Our Partners</a>
+                                <a href="/about" class="primary-btn">About Us</a>
+                                <a href="/service" class="primary-btn partner-btn">Our Partners</a>
                             </div>
                         </div>
                     </div>
@@ -322,7 +314,6 @@ export default class Home extends Component{
                             </div>
                             <div class="car__item__text">
                                 <div class="car__item__text__inner">
-                                    <div class="label-date">2016</div>
                                     
                                     <Link to={{
                                           pathname: `/detail/${response.product_slug}`,
@@ -330,15 +321,10 @@ export default class Home extends Component{
                                         }}>
                                             <h5>{response.product_title}</h5>
                                     </Link>
-                                    <ul>
-                                        <li><span>35,000</span> mi</li>
-                                        <li>Auto</li>
-                                        <li><span>700</span> hp</li>
-                                    </ul>
                                 </div>
                                 <div class="car__item__price">
                                     <span class="car-option">For Rent</span>
-                                    <h6>${response.product_price}<span>/Month</span></h6>
+                                    <h6><span>2020</span></h6>
                                 </div>
                             </div>
                         </div>
@@ -375,7 +361,7 @@ export default class Home extends Component{
                                 </li>
                                 <li><i class="fa fa-check-circle"></i> Curabitur quis ante vitae lacus varius pretium.</li>
                             </ul>
-                            <a href="#" class="primary-btn">About Us</a>
+                            <a href="/about" class="primary-btn">About Us</a>
                         </div>
                     </div>
                 </div>
@@ -411,10 +397,6 @@ export default class Home extends Component{
                     <div class="col-lg-4 col-md-6">
                         <div class="latest__blog__item">
                             <img src={response.image}/>
-                                <ul>
-                                    <li>By {response.author_name}</li>
-                                    <li>{response.date}</li>
-                                </ul>
                            
                             <div class="latest__blog__item__text">
                                 <h5>{response.title}</h5>
