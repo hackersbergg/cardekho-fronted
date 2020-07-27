@@ -13,13 +13,13 @@ export default class Footer extends Component{
 	                <div class="col-lg-4 col-md-4">
 	                    <div class="footer__about">
 	                        <div class="footer__logo">
-	                            <a href="#"><img src="assets/img/main-logo.png" alt=""/></a>
+	                            <a href="#"><img src="https://i.stack.imgur.com/myCPk.png" alt="footer-logo"/></a>
 	                        </div>
 	                        <p>Any questions? Let us know in store at Bahrkheda, kalan, Pilibhit, UP, India or call us
 	                            on (+91) 9675331149</p>
 	                        <div class="footer__social">
 	                            <a href="https://www.facebook.com/Jaymataditourtravel-115583619879060/" class="facebook"><i class="fa fa-facebook"></i></a>
-	                            <a href="https://wa.me/8144258413?text=I%27m%20interested%20in%20your%20car%20for%20rent" class="twitter"><i class="fa fa-whatsapp"></i></a>
+	                            <a href="https://wa.me/9675331149?text=I%27m%20interested%20in%20your%20car%20for%20rent" class="twitter"><i class="fa fa-whatsapp"></i></a>
 	                            <a href="https://www.instagram.com/jaymataditourtravel/" class="google"><i class="fa fa-instagram"></i></a>
 
 	                        </div>

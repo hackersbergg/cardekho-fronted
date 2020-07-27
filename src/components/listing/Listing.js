@@ -70,10 +70,10 @@ export default class Listing extends Component{
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api/car/p_list?search=${this.state.searchValue}&page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
+        `http://localhost:8000/api/car/p_list?search=${this.state.searchValue}&page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
       );
       const filterResponse = await fetch(
-        `http://3.128.190.113/api/carlist/filter`
+        `http://localhost:8000/api/carlist/filter`
       );
       const JsonResponse = await response.json();
       const JsonFilterResponse = await filterResponse.json();
@@ -159,14 +159,6 @@ export default class Listing extends Component{
 								        ))}
 								      </div>
 
-								      <div class="card">
-								        <div class="card-header">Engine</div>
-								        {filterResponse.filter_EngineData.map((filterResponse) =>(
-								        <div class="card-inner">
-								          <p class="card-text"><a href="#" onClick={() => this.filterEngineClick(filterResponse.id)}>{filterResponse.engine}</a></p>
-								        </div>
-								        ))}
-								      </div>
 
 								      <div class="card">
 								        <div class="card-header">Color</div>
@@ -204,17 +196,13 @@ export default class Listing extends Component{
 											  </a>
 
 											  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('-price')}>Highest Price</a>
-											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('price')}>Lowest Price</a>
+											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('id')}>Ascending</a>
+											    <a class="dropdown-item" href="#" onClick={() => this.filterOrderClick('-id')}>Descending</a>
 											
 											  </div>
 											</div>
 		                                </div>
-		                            </div>
-
-
-
-		                             
+		                            </div>	                             
 
 		                        </div>
 		                    </div>
@@ -236,24 +224,25 @@ export default class Listing extends Component{
 		                                </div>
 		                                <div class="car__item__text">
 		                                    <div class="car__item__text__inner">
-		                                        <div class="label-date">2016</div>
+		                                        <div class="label-date">{response.year}</div>
 
 		                                        <Link to={{
 				                                  pathname: `/detail/${response.slug}`,
 				                                  response:response
 				                                }}>
-				                                    <h5>{response.title}</h5>
+				                                      <h5><a href="#">{response.title}</a></h5>
 				                                </Link>
 
 		                                        <ul>
-		                                            <li><span>35,000</span> mi</li>
-		                                            <li>Auto</li>
-		                                            <li><span>700</span> hp</li>
+		                                            <li>{response.model}</li>
+		                                            <li>{response.mileage}<span>/ kmpl</span></li>
+
 		                                        </ul>
 		                                    </div>
 		                                    <div class="car__item__price">
-		                                        <span class="car-option">For Rent</span>
-		                                        <h6>${response.price}<span>/Month</span></h6>
+		                                        <span class="car-option sale">For Rent</span>
+		                                        <h6>{response.brand}<span></span></h6>
+		                                        
 		                                    </div>
 		                                </div>
 		                            </div>

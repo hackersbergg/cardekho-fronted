@@ -25,7 +25,7 @@ export default class Home extends Component{
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api-2/`
+        `http://localhost:8000/api-2/`
       );
       const JsonResponse = await response.json();
       this.setState({ response: JsonResponse });
@@ -304,7 +304,9 @@ export default class Home extends Component{
 
                     <div class="col-lg-3 col-md-4 col-sm-6 mix">
                         <div class="car__item">
+
                             <div class="car__item__pic__slider">
+
                                   <Link to={{
                                           pathname: `/detail/${response.product_slug}`,
                                           response:response
@@ -314,6 +316,7 @@ export default class Home extends Component{
                             </div>
                             <div class="car__item__text">
                                 <div class="car__item__text__inner">
+                                    <div class="label-date">{response.product_year}</div>
                                     
                                     <Link to={{
                                           pathname: `/detail/${response.product_slug}`,
@@ -323,8 +326,8 @@ export default class Home extends Component{
                                     </Link>
                                 </div>
                                 <div class="car__item__price">
-                                    <span class="car-option">For Rent</span>
-                                    <h6><span>2020</span></h6>
+                                    <span class="car-option sale">For Rent</span>
+                                    <h6><span>{response.product_brand}</span></h6>
                                 </div>
                             </div>
                         </div>
@@ -374,43 +377,6 @@ export default class Home extends Component{
         </section>
 
         ))}
-
-
-
-
-        <section class="latest spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <span>Our Blog</span>
-                            <h2>Latest News Updates</h2>
-                            <p>Sign up for the latest Automobile Industry information and more. Duis aute<br /> irure
-                                dolorin reprehenderits volupta velit dolore fugiat.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                 {response.home_blogData.map((response) =>(
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="latest__blog__item">
-                            <img src={response.image}/>
-                           
-                            <div class="latest__blog__item__text">
-                                <h5>{response.title}</h5>
-                                <p>{response.description}</p>
-                                <a href="#">View More <i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    ))}
-
-                </div>
-            </div>
-        </section>
 
       </div>
 

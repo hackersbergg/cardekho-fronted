@@ -53,7 +53,7 @@ export default class Header extends Component{
 		                            </div>
 		                            <div class="header__top__social">
 		                                <a href="https://www.facebook.com/Jaymataditourtravel-115583619879060/"><i class="fa fa-facebook"></i></a>
-		                                <a href="https://wa.me/8144258413?text=I%27m%20interested%20in%20your%20car%20for%20rent"><i class="fa fa-whatsapp"></i></a>
+		                                <a href="https://wa.me/9675331149?text=I%27m%20interested%20in%20your%20car%20for%20rent"><i class="fa fa-whatsapp"></i></a>
 		                                <a href="https://www.instagram.com/jaymataditourtravel/"><i class="fa fa-instagram"></i></a>
 		                            </div>
 		                        </div>
@@ -65,7 +65,7 @@ export default class Header extends Component{
 		            <div class="row">
 		                <div class="col-lg-2">
 		                    <div class="header__logo">
-		                        <a href="/"><img src="assets/img/main-logo.png" alt=""/></a>
+		                        <img src="https://i.stack.imgur.com/myCPk.png" alt="header-logo"/>
 		                    </div>
 		                </div>
 		                <div class="col-lg-10">

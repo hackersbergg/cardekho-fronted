@@ -1,10 +1,48 @@
 import React, {Component} from "react";
-
+import {Form, notification} from 'antd';
 import Header from "../common/Header.js"
 import Footer from "../common/Footer.js"
 
 
 export default class Contact extends Component{
+
+	constructor(props) {
+    super(props);
+
+    this.state = {
+        name: "",
+        email: "",
+        subject: "",
+        description: "",
+    }
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+  	}
+
+    onFormSubmit(values){
+      console.log(values);
+
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("subject", values.subject);
+      formData.append("description", values.description);
+
+        const options = {
+            method: 'POST',
+            body: formData
+        };
+
+      fetch('http://localhost:8000/api/contactus', options).then(() => {
+        this.props.history.push('/thankyou');
+
+        })
+      .catch((error) => {
+      console.log(this.props.state)
+      })
+
+    };
+
+
 	render(){
 		return(
 
@@ -30,19 +68,30 @@ export default class Contact extends Component{
 	                </div>
 	                <div class="col-lg-6 col-md-6">
 	                    <div class="contact__form">
-	                        <form action="#">
+
+	                        <Form onFinish={this.onFormSubmit}>
 	                            <div class="row">
 	                                <div class="col-lg-6">
-	                                    <input type="text" placeholder="Name"/>
+	                                	<Form.Item name="name">
+	                                    	<input type="text" placeholder="Name" required />
+	                                    </Form.Item>
 	                                </div>
 	                                <div class="col-lg-6">
-	                                    <input type="text" placeholder="Email"/>
+	                                	<Form.Item name="email">
+	                                    	<input type="email" placeholder="Email" required />
+	                                    </Form.Item>
 	                                </div>
 	                            </div>
-	                            <input type="text" placeholder="Subject"/>
-	                            <textarea placeholder="Your Question"></textarea>
+	                            <Form.Item name="subject">
+	                            	<input type="text" placeholder="Subject" required />
+	                            </Form.Item>
+
+	                            <Form.Item name="description">
+	                            	<textarea placeholder="Your Question" required ></textarea>
+	                            </Form.Item>
 	                            <button type="submit" class="site-btn">Submit Now</button>
-	                        </form>
+	                        </Form>
+
 	                    </div>
 	                </div>
 	            </div>
