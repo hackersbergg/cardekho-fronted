@@ -25,7 +25,7 @@ export default class Home extends Component{
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api-2/`
+        `http://localhost:8000/api-2/`
       );
       const JsonResponse = await response.json();
       this.setState({ response: JsonResponse });

@@ -32,7 +32,7 @@ export default class Contact extends Component{
             body: formData
         };
 
-      fetch('http://3.128.190.113/api/contactus', options).then(() => {
+      fetch('http://localhost:8000/api/contactus', options).then(() => {
         this.props.history.push('/thankyou');
 
         })

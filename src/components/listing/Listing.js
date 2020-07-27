@@ -70,10 +70,10 @@ export default class Listing extends Component{
 
     try {
       const response = await fetch(
-        `http://3.128.190.113/api/car/p_list?search=${this.state.searchValue}&page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
+        `http://localhost:8000/api/car/p_list?search=${this.state.searchValue}&page=${this.state.pageValue}&brand=${this.state.filterBrandValue}&model=${this.state.filterModelValue}&color=${this.state.filterColorValue}&condition=${this.state.filterConditionValue}&mileage=${this.state.filterMileageValue}&engine=${this.state.filterEngineValue}&ordering=${this.state.filterOrderValue}`
       );
       const filterResponse = await fetch(
-        `http://3.128.190.113/api/carlist/filter`
+        `http://localhost:8000/api/carlist/filter`
       );
       const JsonResponse = await response.json();
       const JsonFilterResponse = await filterResponse.json();
