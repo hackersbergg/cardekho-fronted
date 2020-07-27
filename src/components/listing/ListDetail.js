@@ -41,7 +41,7 @@ export default class Detail extends Component{
             body: formData
         };
 
-      fetch('http://localhost:8000/api/productbook', options).then(() => {
+      fetch('http://3.128.190.113/api/productbook', options).then(() => {
         this.props.history.push('/bookconfirmed');
 
         })
@@ -60,7 +60,7 @@ export default class Detail extends Component{
 	    const path = this.props.match.params.slug;
 	    try {
 	      const response = await fetch(
-	        `http://localhost:8000/api/car/p_detail/${path}`
+	        `http://3.128.190.113/api/car/p_detail/${path}`
 	      );
 	      const JsonResponse = await response.json();
 	      this.setState({ response: JsonResponse });
